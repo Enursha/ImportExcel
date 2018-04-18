@@ -62,6 +62,7 @@
         [Switch]$NoLegend,
         [Switch]$ShowCategory,
         [Switch]$ShowPercent,
+        [Switch]$ShowValue,
         [Switch]$AutoSize,
         [Switch]$FreezeTopRow,
         [Switch]$FreezeFirstColumn,

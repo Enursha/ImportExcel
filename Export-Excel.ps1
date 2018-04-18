@@ -47,6 +47,8 @@
             Add category labels to the pivot chart
         .PARAMETER ShowPercent
             Add Percentage labels to the pivot chart
+        .PARAMETER ShowValue
+            Add Value labels to the pivot chart
         .PARAMETER ConditionalText
             Applies a 'Conditional formatting rule' in Excel on all the cells. When specific conditions are met a rule is triggered.
         .PARAMETER NoNumberConversion
@@ -350,6 +352,7 @@
         [Switch]$NoLegend,
         [Switch]$ShowCategory,
         [Switch]$ShowPercent,
+        [Switch]$ShowValue,
         [Switch]$AutoSize,
         [Switch]$Show,
         [Switch]$NoClobber,
@@ -785,6 +788,7 @@
                             if ($chart.DataLabel) {
                                 $chart.DataLabel.ShowCategory = [boolean]$item.value.ShowCategory
                                 $chart.DataLabel.ShowPercent = [boolean]$item.value.ShowPercent
+                                $chart.DataLabel.ShowValue = [boolean]$item.value.ShowValue
                             }
                             if ([boolean]$item.value.NoLegend) {$chart.Legend.Remove()}
                             if ($item.value.ChartTitle) {$chart.Title.Text = $item.value.chartTitle}
@@ -849,6 +853,7 @@
                     if ($chart.DataLabel) {
                         $chart.DataLabel.ShowCategory = $ShowCategory
                         $chart.DataLabel.ShowPercent  = $ShowPercent
+                        $chart.DataLabel.ShowValue    = $ShowValue
                     }
                     $chart.SetPosition(0, 26, 2, 26)  # if Pivot table is rows+data only it will be 2 columns wide if has pivot columns we don't know how wide it will be
                     if ($NoLegend) {
@@ -927,6 +932,7 @@
                 if ($chart.Datalabel -ne $null) {
                     $chart.Datalabel.ShowCategory = $chartDef.ShowCategory
                     $chart.Datalabel.ShowPercent = $chartDef.ShowPercent
+                    $chart.DataLabel.ShowValue    = $ShowValue
                 }
 
                 $chart.SetPosition($chartDef.Row, $chartDef.RowOffsetPixels, $chartDef.Column, $chartDef.ColumnOffsetPixels)
@@ -1048,6 +1054,7 @@ function New-PivotTableDefinition {
         [Switch]$NoLegend,
         [Switch]$ShowCategory,
         [Switch]$ShowPercent,
+        [Switch]$ShowValue,
         [String]$ChartTitle,
         [Switch]$NoTotalsInPivot
     )

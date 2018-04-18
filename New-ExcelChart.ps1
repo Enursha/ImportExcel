@@ -14,6 +14,7 @@ function New-ExcelChart {
         [Switch]$NoLegend,
         [Switch]$ShowCategory,
         [Switch]$ShowPercent,
+        [Switch]$ShowValue,
         $SeriesHeader
     )
 
@@ -32,6 +33,7 @@ function New-ExcelChart {
         NoLegend     = if($NoLegend)     {$true} else {$false}
         ShowCategory = if($ShowCategory) {$true} else {$false}
         ShowPercent  = if($ShowPercent)  {$true} else {$false}
+        ShowValue    = if($ShowValue)    {$true} else {$false}
         SeriesHeader=$SeriesHeader
    }
 }

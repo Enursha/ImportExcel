@@ -5,7 +5,8 @@ function DoChart {
         [OfficeOpenXml.Drawing.Chart.eChartType]$ChartType,
         [Switch]$NoLegend,
         [Switch]$ShowCategory,
-        [Switch]$ShowPercent
+        [Switch]$ShowPercent,
+        [Switch]$ShowValue
      )
 
      if($targetData[0] -is [System.ValueType]) {
@@ -20,7 +21,7 @@ function DoChart {
          $YRange = "{0}2:{0}{1}" -f $Y,($targetData.count+1)
 
          $chart = New-ExcelChart -XRange $xRange -YRange $yRange -Title $title -ChartType $ChartType `
-            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent
+            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent -ShowValue:$ShowValue
      }
 
      $xlFile = [System.IO.Path]::GetTempFileName() -replace "tmp","xlsx"
@@ -35,7 +36,8 @@ function BarChart {
         [OfficeOpenXml.Drawing.Chart.eChartType]$ChartType="BarStacked",
         [Switch]$NoLegend,
         [Switch]$ShowCategory,
-        [Switch]$ShowPercent
+        [Switch]$ShowPercent,
+        [Switch]$ShowValue        
     )
 
     Begin   { $data = @() }
@@ -43,7 +45,8 @@ function BarChart {
 
     End {
         DoChart $data $title -ChartType $ChartType `
-            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent
+            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent -ShowValue:$ShowValue
+
     }
 }
 
@@ -55,7 +58,8 @@ function PieChart {
         [OfficeOpenXml.Drawing.Chart.eChartType]$ChartType="PieExploded3D",
         [Switch]$NoLegend,
         [Switch]$ShowCategory,
-        [Switch]$ShowPercent
+        [Switch]$ShowPercent,
+        [Switch]$ShowValue
     )
 
     Begin   { $data = @() }
@@ -63,7 +67,7 @@ function PieChart {
 
     End {
         DoChart $data $title -ChartType $ChartType `
-            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent
+            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent -ShowValue:$ShowValue
     }
  }
 
@@ -75,7 +79,8 @@ function LineChart {
         [OfficeOpenXml.Drawing.Chart.eChartType]$ChartType="Line",
         [Switch]$NoLegend,
         [Switch]$ShowCategory,
-        [Switch]$ShowPercent
+        [Switch]$ShowPercent,
+        [Switch]$ShowValue
     )
 
     Begin   { $data = @() }
@@ -83,7 +88,7 @@ function LineChart {
 
     End {
         DoChart $data $title -ChartType $ChartType `
-            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent
+            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent -ShowValue:$ShowValue
     }
 }
 
@@ -95,7 +100,8 @@ function ColumnChart {
         [OfficeOpenXml.Drawing.Chart.eChartType]$ChartType="ColumnStacked",
         [Switch]$NoLegend,
         [Switch]$ShowCategory,
-        [Switch]$ShowPercent
+        [Switch]$ShowPercent,
+        [Switch]$ShowValue
     )
 
     Begin   { $data = @() }
@@ -103,6 +109,6 @@ function ColumnChart {
 
     End {
         DoChart $data $title -ChartType $ChartType `
-            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent
+            -NoLegend:$NoLegend -ShowCategory:$ShowCategory -ShowPercent:$ShowPercent -ShowValue:$ShowValue
     }
 }
